@@ -13,12 +13,12 @@ In this sample it has additional reference to the [Company](https://github.com/a
 ## Functional Overview
 
 The application retrieves information about the related business user for a logged-in user 
-and adds it into the session attribures, so it can be taken from it at any time. Find the implementation of this part [here]()
+and adds it into the session attribures, so it can be taken from it at any time. Find the implementation of this part [here](https://github.com/aleksey-stukalov/session-attributes/blob/master/modules/web/src/com/company/sattr/web/SattrApp.java)
 
-In the [main screen implementation]() contains an example of how you can access this session attribute from the controller.
+In the [main screen implementation](https://github.com/aleksey-stukalov/session-attributes/blob/master/modules/web/src/com/company/sattr/web/screens/ExtAppMainWindow.java) contains an example of how you can access this session attribute from the controller.
 It sets a lookup field (in the top right corner) to a value, that is saved in the business user coming from session attributes.
 
 ## Useful Links
 
-1. Read how to hook global application actions like login in the official [documentation](https://doc.cuba-platform.com/manual-6.5/gui_web.html). Find how it is implemented in this project [here] and [here].
-2. Learn how to manipulate with the session attributes by reading [this chapter]() of the docs.
+1. Read how to hook global application actions like login in the official [documentation](https://doc.cuba-platform.com/manual-latest/gui_web.html). Find how it is implemented in this project [here](https://github.com/aleksey-stukalov/session-attributes/blob/master/modules/web/src/com/company/sattr/web/SattrApp.java) and [here](https://github.com/aleksey-stukalov/session-attributes/blob/master/modules/web/src/com/company/sattr/web-spring.xml).
+2. Learn how to manipulate with the session attributes by reading [this chapter](https://doc.cuba-platform.com/manual-latest/session_attr.html) of the docs.
