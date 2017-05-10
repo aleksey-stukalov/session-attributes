@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        class="com.company.sattr.web.screens.ExtUserBrowser"
+        extends="/com/haulmont/cuba/gui/app/security/user/browse/user-browse.xml"
+        messagesPack="com.company.sattr.web.screens">
+    <layout>
+        <groupTable id="usersTable">
+            <buttonsPanel alwaysVisible="true"/>
+        </groupTable>
+    </layout>
+</window>

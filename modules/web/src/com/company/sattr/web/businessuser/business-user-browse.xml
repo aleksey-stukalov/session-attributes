@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://browseCaption"
+        class="com.company.sattr.web.businessuser.BusinessUserBrowse"
+        focusComponent="businessUsersTable"
+        lookupComponent="businessUsersTable"
+        messagesPack="com.company.sattr.web.businessuser">
+    <dsContext>
+        <groupDatasource id="businessUsersDs"
+                         class="com.company.sattr.entity.BusinessUser"
+                         view="business-user-view">
+            <query>
+                <![CDATA[select e from sattr$BusinessUser e]]>
+            </query>
+        </groupDatasource>
+    </dsContext>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="businessUsersTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="businessUsersTable"
+                datasource="businessUsersDs">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="businessUsersTable"
+                    width="100%">
+            <actions>
+                <action id="create"/>
+                <action id="edit"/>
+                <action id="remove"/>
+            </actions>
+            <columns>
+                <column id="sysUser.login"/>
+                <column id="sysUser.name"/>
+                <column id="sysUser.firstName"/>
+                <column id="sysUser.lastName"/>
+                <column id="sysUser.email"/>
+                <column id="company"/>
+            </columns>
+            <rows datasource="businessUsersDs"/>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn"
+                        action="businessUsersTable.create"/>
+                <button id="editBtn"
+                        action="businessUsersTable.edit"/>
+                <button id="removeBtn"
+                        action="businessUsersTable.remove"/>
+            </buttonsPanel>
+        </groupTable>
+    </layout>
+</window>

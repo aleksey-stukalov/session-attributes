@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        class="com.company.sattr.web.screens.ExtAppMainWindow"
+        extends="/com/haulmont/cuba/web/app/mainwindow/mainwindow.xml"
+        messagesPack="com.company.sattr.web.screens"
+        xmlns:ext="http://schemas.haulmont.com/cuba/window-ext.xsd">
+    <dsContext>
+        <collectionDatasource id="companiesDs"
+                              class="com.company.sattr.entity.Company">
+            <query>
+                <![CDATA[select e from sattr$Company e]]>
+            </query>
+        </collectionDatasource>
+    </dsContext>
+    <dialogMode height="600"
+                width="800"/>
+    <layout>
+        <hbox id="titleBar">
+            <lookupField id="companyLookup"
+                         align="MIDDLE_LEFT"
+                         ext:index="3"
+                         optionsDatasource="companiesDs"/>
+        </hbox>
+    </layout>
+</window>

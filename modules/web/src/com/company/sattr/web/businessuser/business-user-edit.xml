@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://editorCaption"
+        class="com.company.sattr.web.businessuser.BusinessUserEdit"
+        datasource="businessUserDs"
+        focusComponent="fieldGroup"
+        messagesPack="com.company.sattr.web.businessuser">
+    <dsContext>
+        <datasource id="businessUserDs"
+                    class="com.company.sattr.entity.BusinessUser"
+                    view="business-user-view"/>
+        <collectionDatasource id="sysUsersDs"
+                              class="com.haulmont.cuba.security.entity.User"
+                              view="_minimal">
+            <query>
+                <![CDATA[select e from sec$User e]]>
+            </query>
+        </collectionDatasource>
+        <collectionDatasource id="companiesDs"
+                              class="com.company.sattr.entity.Company"
+                              view="_minimal">
+            <query>
+                <![CDATA[select e from sattr$Company e]]>
+            </query>
+        </collectionDatasource>
+    </dsContext>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="windowActions"
+            spacing="true">
+        <fieldGroup id="fieldGroup"
+                    datasource="businessUserDs">
+            <column width="250px">
+                <field optionsDatasource="sysUsersDs"
+                       property="sysUser"/>
+                <field optionsDatasource="companiesDs"
+                       property="company"/>
+            </column>
+        </fieldGroup>
+        <frame id="windowActions"
+               screen="editWindowActions"/>
+    </layout>
+</window>
