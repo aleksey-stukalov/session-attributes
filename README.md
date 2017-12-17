@@ -1,7 +1,8 @@
 # session-attributes
 
-This sample is developed in response to 
-[this question](https://www.cuba-platform.com/support/topic/company-selector-in-main-window) on the CUBA support forum.
+This sample is developed in response to the following questions on the CUBA support forum: 
+1. https://www.cuba-platform.com/support/topic/company-selector-in-main-window
+2. https://www.cuba-platform.com/discuss/t/extend-user-of-cuba-platform-with-new-attribute-manager/3213
 
 ## Data Model
 
