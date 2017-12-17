@@ -20,7 +20,7 @@ It sets a lookup field (in the top right corner) to a value, that is saved in th
 
 ## Useful Links
 
-1. Read how to hook global application actions like login in the official [documentation](https://doc.cuba-platform.com/manual-latest/gui_web.html). Find how it is implemented in this project [here](https://github.com/aleksey-stukalov/session-attributes/blob/master/modules/web/src/com/company/sattr/web/SattrApp.java) and [here](https://github.com/aleksey-stukalov/session-attributes/blob/master/modules/web/src/com/company/sattr/web-spring.xml).
+1. Read about the global application login actions in the official [documentation](https://doc.cuba-platform.com/manual-latest/login.html). Find how to hook the events [here](https://doc.cuba-platform.com/manual-latest/events.html) and how it is implemented in this project [here](https://github.com/aleksey-stukalov/session-attributes/blob/master/modules/core/src/com/company/sattr/core/AfterUserLoginEventListener.java).
 2. Learn how to manipulate with the session attributes by reading [this chapter](https://doc.cuba-platform.com/manual-latest/session_attr.html) of the docs.
-3. Find information on how to extend the main screen [here](https://doc.cuba-platform.com/manual-6.5/main_window_layout.html) or just click a few times in the CUBA Studio and it will scaffold an extension for the main screen for you.
+3. Find information on how to extend the main screen [here](https://doc.cuba-platform.com/manual-latest/main_window_layout.html) or just click a few times in the CUBA Studio and it will scaffold an extension for the main screen for you.
 4. Find another way of extending the system user entity in [this sample](https://github.com/aleksey-stukalov/ext-user).
