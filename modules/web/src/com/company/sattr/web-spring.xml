@@ -8,5 +8,4 @@
     <!-- Annotation-based beans -->
     <context:component-scan base-package="com.company.sattr"/>
 
-    <bean name="cuba_App" class="com.company.sattr.web.SattrApp" scope="prototype"/>
 </beans>
