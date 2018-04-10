@@ -1,60 +1,66 @@
-/*C96*/SET SCHEMA PUBLIC
+/*C18*/SET SCHEMA PUBLIC
 DISCONNECT
-/*C97*/SET SCHEMA PUBLIC
+/*C19*/SET SCHEMA PUBLIC
 DISCONNECT
-/*C98*/SET SCHEMA PUBLIC
+/*C20*/SET SCHEMA PUBLIC
 DISCONNECT
-/*C99*/SET SCHEMA PUBLIC
+/*C21*/SET SCHEMA PUBLIC
 DISCONNECT
-/*C100*/SET SCHEMA PUBLIC
+/*C22*/SET SCHEMA PUBLIC
 DISCONNECT
-/*C101*/SET SCHEMA PUBLIC
-create table if not exists SYS_REST_API_TOKEN (\u000a      ID varchar(36) not null,\u000a      CREATE_TS timestamp,\u000a      CREATED_BY varchar(50),\u000a      --\u000a      ACCESS_TOKEN_VALUE varchar(255),\u000a      ACCESS_TOKEN_BYTES longvarbinary,\u000a      AUTHENTICATION_KEY varchar(255),\u000a      AUTHENTICATION_BYTES longvarbinary,\u000a      EXPIRY timestamp,\u000a      --\u000a      primary key (ID)\u000a)
-INSERT INTO SYS_DB_CHANGELOG VALUES('10-cuba/update/hsql/17/170228-createRestApiTokenTable.sql','2017-12-17 17:24:37.218000',0)
+/*C23*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C24*/SET SCHEMA PUBLIC
+alter table SEC_FILTER add GLOBAL_DEFAULT boolean
+DELETE FROM SEC_FILTER WHERE ID='b61d18cb-e79a-46f3-b16d-eaf4aebb10dd'
+INSERT INTO SEC_FILTER VALUES('b61d18cb-e79a-46f3-b16d-eaf4aebb10dd','2010-03-01 11:14:06.830000','admin',2,'2010-03-01 11:52:53.170000','admin',NULL,NULL,'[sec$User.browse].genericFilter','Search by role',NULL,'<?xml version="1.0" encoding="UTF-8"?>\u000a<filter>\u000a  <and>\u000a    <c name="UrMxpkfMGn" class="com.haulmont.cuba.security.entity.Role" type="CUSTOM" locCaption="Role" entityAlias="u" join="join u.userRoles ur">ur.role.id = :component$genericFilter.UrMxpkfMGn32565\u000a          <param name="component$genericFilter.UrMxpkfMGn32565">NULL</param>\u000a    </c>\u000a  </and>\u000a</filter>','60885987-1b61-4247-94c7-dff348347f93',FALSE)
 COMMIT
-create table SEC_SESSION_LOG (\u000a    ID varchar(36) not null,\u000a    VERSION integer not null,\u000a    CREATE_TS timestamp,\u000a    CREATED_BY varchar(50),\u000a    UPDATE_TS timestamp,\u000a    UPDATED_BY varchar(50),\u000a    DELETE_TS timestamp,\u000a    DELETED_BY varchar(50),\u000a    --\u000a    SESSION_ID varchar(36) not null,\u000a    SUBSTITUTED_USER_ID varchar(36),\u000a    USER_ID varchar(36) not null,\u000a    USER_DATA longvarchar,\u000a    LAST_ACTION integer not null,\u000a    CLIENT_INFO varchar(512),\u000a    ADDRESS varchar(255),\u000a    STARTED_TS timestamp,\u000a    FINISHED_TS timestamp,\u000a    CLIENT_TYPE varchar(10),\u000a    SERVER_ID varchar(128),\u000a    --\u000a    primary key (ID)\u000a)
-\u000aalter table SEC_SESSION_LOG add constraint FK_SEC_SESSION_LOG_USER foreign key (USER_ID) references SEC_USER(ID)
-\u000acreate index IDX_SEC_SESSION_LOG_USER on SEC_SESSION_LOG (USER_ID)
-\u000aalter table SEC_SESSION_LOG add constraint FK_SEC_SESSION_LOG_SUBUSER foreign key (SUBSTITUTED_USER_ID) references SEC_USER(ID)
-\u000acreate index IDX_SEC_SESSION_LOG_SUBUSER on SEC_SESSION_LOG (SUBSTITUTED_USER_ID)
-INSERT INTO SYS_DB_CHANGELOG VALUES('10-cuba/update/hsql/17/170502-createSessionHistoryTable.sql','2017-12-17 17:24:37.224000',0)
+INSERT INTO SYS_DB_CHANGELOG VALUES('10-cuba/update/hsql/17/171116-addGlobalDefaultToFilterEntity.sql','2018-04-10 12:43:42.855000',0)
 COMMIT
--- Increase length of SEC_CONSTRAINT columns\u000aalter table SEC_CONSTRAINT alter column GROOVY_SCRIPT longvarchar
-\u000aalter table SEC_CONSTRAINT alter column FILTER_XML longvarchar
-INSERT INTO SYS_DB_CHANGELOG VALUES('10-cuba/update/hsql/17/170620-alterConstraints.sql','2017-12-17 17:24:37.226000',0)
+alter table SYS_REST_API_TOKEN add LOCALE varchar(200)
+INSERT INTO SYS_DB_CHANGELOG VALUES('10-cuba/update/hsql/17/171121-addLocaleToRestApiToken.sql','2018-04-10 12:43:42.857000',0)
 COMMIT
-create table SEC_LOCALIZED_CONSTRAINT_MSG (\u000a    ID varchar(36) not null,\u000a    CREATE_TS timestamp,\u000a    CREATED_BY varchar(50),\u000a    VERSION integer,\u000a    UPDATE_TS timestamp,\u000a    UPDATED_BY varchar(50),\u000a    DELETE_TS timestamp,\u000a    DELETED_BY varchar(50),\u000a    --\u000a    ENTITY_NAME varchar(255) not null,\u000a    OPERATION_TYPE varchar(50) not null,\u000a    VALUES_ longvarchar,\u000a    --\u000a    primary key (ID)\u000a)
-\u000acreate unique index IDX_SEC_LOC_CNSTRNT_MSG_UNIQUE\u000a  on SEC_LOCALIZED_CONSTRAINT_MSG (ENTITY_NAME, OPERATION_TYPE, DELETE_TS)
-INSERT INTO SYS_DB_CHANGELOG VALUES('10-cuba/update/hsql/17/170712-createLocalizedConstraintMessageTable.sql','2017-12-17 17:24:37.228000',0)
+create table SYS_REFRESH_TOKEN (\u000a    ID varchar(36) not null,\u000a    CREATE_TS timestamp,\u000a    --\u000a    TOKEN_VALUE varchar(255),\u000a    TOKEN_BYTES longvarbinary,\u000a    AUTHENTICATION_BYTES longvarbinary,\u000a    EXPIRY timestamp,\u000a    USER_LOGIN varchar(50),\u000a    --\u000a    primary key (ID)\u000a)
+INSERT INTO SYS_DB_CHANGELOG VALUES('10-cuba/update/hsql/17/1712011000-createRestApiRefreshTokenTable.sql','2018-04-10 12:43:42.858000',0)
 COMMIT
-alter table SYS_CATEGORY_ATTR add LOCALE_NAMES varchar(1000)
-\u000aalter table SYS_CATEGORY_ATTR add ENUMERATION_LOCALES varchar(5000)
-\u000aalter table SYS_CATEGORY add LOCALE_NAMES varchar(1000)
-INSERT INTO SYS_DB_CHANGELOG VALUES('10-cuba/update/hsql/17/170829-addLocaleNameColumnToCategory.sql','2017-12-17 17:24:37.231000',0)
+alter table SYS_REST_API_TOKEN alter column ACCESS_TOKEN_VALUE rename to TOKEN_VALUE
+\u000aalter table SYS_REST_API_TOKEN alter column ACCESS_TOKEN_BYTES rename to TOKEN_BYTES
+\u000aalter table SYS_REST_API_TOKEN drop CREATED_BY
+INSERT INTO SYS_DB_CHANGELOG VALUES('10-cuba/update/hsql/17/1712011010-renameRestApiTokenColumns.sql','2018-04-10 12:43:42.860000',0)
 COMMIT
-alter table SYS_REST_API_TOKEN add USER_LOGIN varchar(50)
-INSERT INTO SYS_DB_CHANGELOG VALUES('10-cuba/update/hsql/17/171002-addUserLoginToRestApiToken.sql','2017-12-17 17:24:37.232000',0)
+alter table SYS_REST_API_TOKEN rename to SYS_ACCESS_TOKEN
+INSERT INTO SYS_DB_CHANGELOG VALUES('10-cuba/update/hsql/17/1712011010-renameRestApiTokenTable.sql','2018-04-10 12:43:42.861000',0)
+COMMIT
+create index IDX_SESSION_LOG_STARTED_TS on SEC_SESSION_LOG (STARTED_TS DESC)
+INSERT INTO SYS_DB_CHANGELOG VALUES('10-cuba/update/hsql/17/171227-createIndexStartedTsDescToSessionLog.sql','2018-04-10 12:43:42.862000',0)
+COMMIT
+alter table SYS_ACCESS_TOKEN add REFRESH_TOKEN_VALUE varchar(255)
+INSERT INTO SYS_DB_CHANGELOG VALUES('10-cuba/update/hsql/17/171229-addRefreshTokenColumnToAccessTokenTable.sql','2018-04-10 12:43:42.863000',0)
+COMMIT
+-- Increase scale for double value\u000aalter table SYS_CATEGORY_ATTR alter column DEFAULT_DOUBLE numeric(36,6)
+\u000aalter table SYS_ATTR_VALUE alter column DOUBLE_VALUE numeric(36,6)
+INSERT INTO SYS_DB_CHANGELOG VALUES('10-cuba/update/hsql/18/180112-alterDynamicAttributeDoubleType.sql','2018-04-10 12:43:42.865000',0)
 COMMIT
 DISCONNECT
-/*C102*/SET SCHEMA PUBLIC
+/*C25*/SET SCHEMA PUBLIC
 DISCONNECT
-/*C103*/SET SCHEMA PUBLIC
+/*C26*/SET SCHEMA PUBLIC
 DISCONNECT
-/*C104*/SET SCHEMA PUBLIC
+/*C27*/SET SCHEMA PUBLIC
 DISCONNECT
-/*C105*/SET SCHEMA PUBLIC
+/*C28*/SET SCHEMA PUBLIC
 DISCONNECT
-/*C107*/SET SCHEMA PUBLIC
+/*C30*/SET SCHEMA PUBLIC
 DISCONNECT
-/*C106*/SET SCHEMA PUBLIC
+/*C29*/SET SCHEMA PUBLIC
 DISCONNECT
-/*C108*/SET SCHEMA PUBLIC
+/*C31*/SET SCHEMA PUBLIC
 DISCONNECT
-/*C109*/SET SCHEMA PUBLIC
+/*C32*/SET SCHEMA PUBLIC
 DISCONNECT
-/*C110*/SET SCHEMA PUBLIC
+/*C33*/SET SCHEMA PUBLIC
 DISCONNECT
-/*C111*/SET SCHEMA PUBLIC
+/*C34*/SET SCHEMA PUBLIC
 DELETE FROM SYS_SERVER WHERE ID='13a0574c-a857-610f-ce88-e379666a7618'
-INSERT INTO SYS_SERVER VALUES('13a0574c-a857-610f-ce88-e379666a7618','2017-05-09 18:04:57.261000',NULL,'2017-12-17 17:28:09.257000',NULL,'localhost:8080/app-core',TRUE,NULL)
+INSERT INTO SYS_SERVER VALUES('13a0574c-a857-610f-ce88-e379666a7618','2017-05-09 18:04:57.261000',NULL,'2018-04-10 12:45:10.623000',NULL,'localhost:8080/app-core',TRUE,NULL)
 COMMIT
